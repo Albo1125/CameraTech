@@ -1,0 +1,866 @@
+[
+   {
+      "Name":"Strawberry Ave/Vespucci Blvd",
+      "X":223.00,
+      "Y":-1042.60,
+      "Z":29.12
+   },
+   {
+      "Name":"Innocence Blvd/Elgin Ave",
+      "X":104.11,
+      "Y":-1363.77,
+      "Z":29.10
+   },
+   {
+      "Name":"Strawberry Ave/Davis Ave",
+      "X":-127.66,
+      "Y":-1738.60,
+      "Z":29.89
+   },
+   {
+      "Name":"New Empire Way",
+      "X":-763.85,
+      "Y":-2182.47,
+      "Z":15.26
+   },
+   {
+      "Name":"Palomino Ave/South Rockford Drive",
+      "X":-770.00,
+      "Y":-1116.10,
+      "Z":10.46
+   },
+   {
+      "Name":"Boulevard Del Perro/Dorset Drive",
+      "X":-1038.81,
+      "Y":-192.10,
+      "Z":37.62
+   },
+   {
+      "Name":"Elgin Ave/Hawick Ave",
+      "X":470.93,
+      "Y":-311.69,
+      "Z":46.85
+   },
+   {
+      "Name":"Elysian Fields FWY Bridge",
+      "X":814.19,
+      "Y":-2623.73,
+      "Z":52.42
+   },
+   {
+      "Name":"La Puerta FWY Bridge",
+      "X":-498.72,
+      "Y":-2265.92,
+      "Z":61.43
+   },
+   {
+      "Name":"Palomino FWY 1",
+      "X":1573.21,
+      "Y":-983.65,
+      "Z":59.78
+   },
+   {
+      "Name":"Los Santos FWY 1",
+      "X":1307.31,
+      "Y":599.01,
+      "Z":80.05
+   },
+   {
+      "Name":"Palomino FWY 2",
+      "X":2118.76,
+      "Y":1362.79,
+      "Z":75.37
+   },
+   {
+      "Name":"Senora FWY 1",
+      "X":2113.76,
+      "Y":2670.40,
+      "Z":50.46
+   },
+   {
+      "Name":"Tongva Drive",
+      "X":-1602.98,
+      "Y":1347.34,
+      "Z":132.23
+   },
+   {
+      "Name":"West Eclipse Blvd/Great Ocean HWY",
+      "X":-2171.84,
+      "Y":-345.79,
+      "Z":13.18
+   },
+   {
+      "Name":"Great Ocean HWY/Route 68",
+      "X":-2720.00,
+      "Y":2284.16,
+      "Z":19.15
+   },
+   {
+      "Name":"Route 68/Senora Road",
+      "X":285.95,
+      "Y":2636.20,
+      "Z":44.67
+   },
+   {
+      "Name":"Panorama Drive/Joshua Road",
+      "X":1697.04,
+      "Y":3509.38,
+      "Z":36.47
+   },
+   {
+      "Name":"Great Ocean HWY/Paleto Blvd",
+      "X":-396.31,
+      "Y":5976.88,
+      "Z":31.66
+   },
+   {
+      "Name":"East Joshua Road/Senora FWY",
+      "X":2793.14,
+      "Y":4408.23,
+      "Z":49.03
+   },
+   {
+      "Name":"San Andreas Ave (Above Del Perro Fwy)",
+      "X":1029.14,
+      "Y":-837.73,
+      "Z":48.43
+   },
+   {
+      "Name":"Capital Blvd/Popular St",
+      "X":797.48,
+      "Y":-1435.33,
+      "Z":27.03
+   },
+   {
+      "Name":"Del Perro Fwy Tunnel",
+      "X":-1214.03,
+      "Y":-697.71,
+      "Z":10.90
+   },
+   {
+      "Name":"Greenwich Pkwy/Exceptionalists Way",
+      "X":-718.42,
+      "Y":-2390.95,
+      "Z":14.58
+   },
+   {
+      "Name":"Olympic Fwy 1",
+      "X":-718.42,
+      "Y":-2390.95,
+      "Z":14.58
+   },
+   {
+      "Name":"Elysian Fields Fwy 1",
+      "X":1064.87,
+      "Y":-1540.35,
+      "Z":28.19
+   },
+   {
+      "Name":"Las Lagunas Blvd (Above Del Perro Fwy)",
+      "X":-209.46,
+      "Y":-517.60,
+      "Z":34.58
+   },
+   {
+      "Name":"Dutch London St/Autopia Pkwy",
+      "X":-157.09,
+      "Y":-2094.66,
+      "Z":25.33
+   },
+   {
+      "Name":"Sustancia Rd/El Rancho Blvd",
+      "X":1336.22,
+      "Y":-1612.47,
+      "Z":52.31
+   },
+   {
+      "Name":"Mirror Park Blvd/Vinewood Park Dr",
+      "X":796.44,
+      "Y":-48.97,
+      "Z":80.45
+   },
+   {
+      "Name":"Baytree Canyon Rd/Marlowe Dr",
+      "X":317.39,
+      "Y":1003.02,
+      "Z":210.36
+   },
+   {
+      "Name":"Vinewood Blvd/Alta St",
+      "X":201.13,
+      "Y":192.52,
+      "Z":105.40
+   },
+   {
+      "Name":"Bay City Ave/San Andreas Ave",
+      "X":-1284.58,
+      "Y":-915.40,
+      "Z":11.22
+   },
+   {
+      "Name":"Great Ocean Hway/Banham Canyon Dr",
+      "X":-3103.37,
+      "Y":1184.33,
+      "Z":20.16
+   },
+   {
+      "Name":"Buccaneer Way (Port)",
+      "X":727.53,
+      "Y":-2784.06,
+      "Z":6.25
+   },
+   {
+      "Name":"Innocence Blvd/Alta St",
+      "X":-274.85,
+      "Y":-1431.61,
+      "Z":31.18
+   },
+   {
+      "Name":"Dutch London St/Signal St",
+      "X":375.65,
+      "Y":-2175.23,
+      "Z":14.58
+   },
+   {
+      "Name":"Upper Power St/San Andreas Ave",
+      "X":31.27,
+      "Y":-769.02,
+      "Z":44.06
+   },
+   {
+      "Name":"Lower Power St/San Andreas Ave",
+      "X":34.44,
+      "Y":-771.14,
+      "Z":31.43
+   },
+   {
+      "Name":"San Vitus Blvd/Hawick Ave",
+      "X":-256.15,
+      "Y":-49.45,
+      "Z":49.36
+   },
+   {
+      "Name":"Great Ocean Hway 1",
+      "X":1571.56,
+      "Y":6425.96,
+      "Z":24.54
+   },
+   {
+      "Name":"Grapeseed Main St",
+      "X":1680.99,
+      "Y":4949.79,
+      "Z":42.28
+   },
+   {
+      "Name":"Route 68/Cat Claw Ave",
+      "X":2282.88,
+      "Y":3000.73,
+      "Z":46.01
+   },
+   {
+      "Name":"La Puerta Fwy 1",
+      "X":-402.67,
+      "Y":-784.82,
+      "Z":36.81
+   },
+   {
+      "Name":"Dutch London St/La Puerta",
+      "X":-756.00,
+      "Y":-1732.56,
+      "Z":29.15
+   },
+   {
+      "Name":"West Eclipse Blvd/Portola Dr",
+      "X":-855.88,
+      "Y":220.11,
+      "Z":73.62
+   },
+   {
+      "Name":"Sustancia Rd/El Burro Blvd",
+      "X":1969.35,
+      "Y":-918.35,
+      "Z":78.98
+   },
+   {
+      "Name":"Palamino Fwy 3",
+      "X":2437.49,
+      "Y":-183.21,
+      "Z":87.49
+   },
+   {
+      "Name":"Strawberry Ave/Integrity Way",
+      "X":359.20,
+      "Y":-665.35,
+      "Z":29.16
+   },
+   {
+      "Name":"Meteor St/Fenwell Pl",
+      "X":572.88,
+      "Y":241.83,
+      "Z":102.98
+   },
+   {
+      "Name":"Popular St/Vespucci Blvd",
+      "X":784.10,
+      "Y":-1009.11,
+      "Z":25.97
+   },
+   {
+      "Name":"Olympic Fwy (Above Power St)",
+      "X":-149.04,
+      "Y":-1183.77,
+      "Z":37.13
+   },
+   {
+      "Name":"Olympic Fwy (Above Strawberry Ave)",
+      "X":230.74,
+      "Y":-1236.45,
+      "Z":38.02
+   },
+   {
+      "Name":"North Rockford Dr/Picture Perfect Dr",
+      "X":-1772.26,
+      "Y":71.22,
+      "Z":68.62
+   },
+   {
+      "Name":"Milton Rd/Picture Perfect Dr",
+      "X":-562.60,
+      "Y":514.78,
+      "Z":105.49
+   },
+   {
+      "Name":"Dorset Dr/Carcer Way",
+      "X":-631.87,
+      "Y":-358.71,
+      "Z":34.64
+   },
+   {
+      "Name":"Roy Lowenstein Blvd/Innocence Blvd",
+      "X":458.93,
+      "Y":-1634.29,
+      "Z":29.10
+   },
+   {
+      "Name":"Los Santos Freeway 2",
+      "X":902.12,
+      "Y":178.07,
+      "Z":75.03
+   },
+   {
+      "Name":"West Mirror Dr/Mirror Park Blvd",
+      "X":1199.44,
+      "Y":-363.63,
+      "Z":68.67
+   },
+   {
+      "Name":"Del Perro Fwy (Under Movie Star Way)",
+      "X":-921.26,
+      "Y":-542.54,
+      "Z":19.01
+   },
+   {
+      "Name":"Del Perro Fwy 2",
+      "X":864.89,
+      "Y":-699.25,
+      "Z":42.49
+   },
+   {
+      "Name":"Adam's Apple Blvd/Calais Ave",
+      "X":-530.31,
+      "Y":-1083.70,
+      "Z":22.25
+   },
+   {
+      "Name":"Adam's Apple Blvd/Calais Ave",
+      "X":-530.31,
+      "Y":-1083.70,
+      "Z":22.25
+   },
+   {
+      "Name":"Adam's Apple Blvd/Little Bighorn Ave",
+      "X":500.11,
+      "Y":-1131.62,
+      "Z":29.28
+   },
+   {
+      "Name":"Alta St (Over Del Perro Fwy)",
+      "X":-44.79,
+      "Y":-491.11,
+      "Z":40.29
+   },
+   {
+      "Name":"Popular St/El Rancho Blvd",
+      "X":772.30,
+      "Y":-2065.26,
+      "Z":29.20
+   },
+   {
+      "Name":"Banham Canyon Dr/North Rockford Dr",
+      "X":-1754.08,
+      "Y":806.96,
+      "Z":140.91
+   },
+   {
+      "Name":"Popular St/Chum St/Hanger Way",
+      "X":733.22,
+      "Y":-2464.10,
+      "Z":19.96
+   },
+   {
+      "Name":"New Empire Way (Airport Entrance)",
+      "X":-1028.99,
+      "Y":-2712.77,
+      "Z":13.64
+   },
+   {
+      "Name":"Ace Jones Dr/Mad Wayne Thunder Dr",
+      "X":-1434.69,
+      "Y":527.71,
+      "Z":118.80
+   },
+   {
+      "Name":"Swiss St/Elgin Ave",
+      "X":242.80,
+      "Y":-623.49,
+      "Z":41.02
+   },
+   {
+      "Name":"Roy Lowenstein Blvd/Carson Ave",
+      "X":275.30,
+      "Y":-1860.52,
+      "Z":26.68
+   },
+   {
+      "Name":"San Andreas Ave/Palomino Ave",
+      "X":-637.60,
+      "Y":-659.22,
+      "Z":31.55
+   },
+   {
+      "Name":"Vespucci Blvd/Peaceful St",
+      "X":-285.47,
+      "Y":-855.09,
+      "Z":31.58
+   },
+   {
+      "Name":"West Eclipse Blvd/Americano Way",
+      "X":-1434.06,
+      "Y":60.60,
+      "Z":52.22
+   },
+   {
+      "Name":"Boulevard Del Perro/North Rockford Dr",
+      "X":-1378.71,
+      "Y":-394.49,
+      "Z":36.69
+   },
+   {
+      "Name":"Popular Street (Above Los Santos Fwy)",
+      "X":601.80,
+      "Y":-375.87,
+      "Z":43.38
+   },
+   {
+      "Name":"La Puerta Fwy (Lower)",
+      "X":-404.82,
+      "Y":-1289.68,
+      "Z":21.19
+   },
+   {
+      "Name":"Vinewood Park Dr/Senora Rd",
+      "X":1028.51,
+      "Y":488.50,
+      "Z":96.07
+   },
+   {
+      "Name":"West Eclipse Blvd/Bay City Ave",
+      "X":-1711.22,
+      "Y":-370.50,
+      "Z":47.30
+   },
+   {
+      "Name":"Magellan Ave/Palomino Ave",
+      "X":-1227.51,
+      "Y":-1373.29,
+      "Z":3.89
+   },
+   {
+      "Name":"Tavatiam Mountains Dam",
+      "X":1675.01,
+      "Y":-70.02,
+      "Z":173.52
+   },
+   {
+      "Name":"Senora Way (Petrol Station)",
+      "X":2560.64,
+      "Y":2626.03,
+      "Z":37.46
+   },
+   {
+      "Name":"Route 68/Zancudo Grande Valley",
+      "X":-366.26,
+      "Y":2877.52,
+      "Z":42.42
+   },
+   {
+      "Name":"Route 68/Fort Zancudo Approach Rd",
+      "X":-1288.06,
+      "Y":2522.84,
+      "Z":19.76
+   },
+   {
+      "Name":"Davis Ave/Alta St",
+      "X":-386.18,
+      "Y":-1829.63,
+      "Z":21.39
+   },
+   {
+      "Name":"Vespucci Blvd/South Rockford Dr",
+      "X":-949.90,
+      "Y":-841.81,
+      "Z":15.38
+   },
+   {
+      "Name":"Bay City Ave/Red Desert Ave",
+      "X":-1440.65,
+      "Y":-754.32,
+      "Z":15.38
+   },
+   {
+      "Name":"Bay City Incline",
+      "X":-1880.38,
+      "Y":-471.43,
+      "Z":23.31
+   },
+   {
+      "Name":"Equality Way (Exit)",
+      "X":-1549.77,
+      "Y":-801.19,
+      "Z":13.15
+   },
+   {
+      "Name":"Equality Way (on-slip)",
+      "X":-1577.42,
+      "Y":-726.07,
+      "Z":18.55
+   },
+   {
+      "Name":"Magellan Ave/Sandcastle Way",
+      "X":-1416.13,
+      "Y":-914.83,
+      "Z":10.81
+   },
+   {
+      "Name":"Great Ocean Hwy/Inseno Rd 1",
+      "X":-3029.89,
+      "Y":222.96,
+      "Z":15.89
+   },
+   {
+      "Name":"Great Ocean Hwy/Zancudo Road",
+      "X":-2479.27,
+      "Y":3660.72,
+      "Z":13.55
+   },
+   {
+      "Name":"Great Ocean Hwy/Zancudo Tunnel",
+      "X":-2592.38,
+      "Y":3120.09,
+      "Z":14.76
+   },
+   {
+      "Name":"Great Ocean Hwy/Raton Canyon Bridge",
+      "X":-1903.28,
+      "Y":4614.71,
+      "Z":56.80
+   },
+   {
+      "Name":"Great Ocean Hwy/Procopio Promenade",
+      "X":-771.77,
+      "Y":5491.96,
+      "Z":34.46
+   },
+   {
+      "Name":"Paleto Blvd/Cascabel Ave",
+      "X":-110.09,
+      "Y":6421.06,
+      "Z":31.22
+   },
+   {
+      "Name":"Great Ocean Hwy/Paleto Bay Petrol Station",
+      "X":179.73,
+      "Y":6582.76,
+      "Z":31.63
+   },
+   {
+      "Name":"Great Ocean Hwy/Procopio Dr",
+      "X":149.27,
+      "Y":6527.46,
+      "Z":31.46
+   },
+   {
+      "Name":"Senora Fwy/Braddock Pass (Tunnel)",
+      "X":2119.48,
+      "Y":6025.09,
+      "Z":50.85
+   },
+   {
+      "Name":"Senora Fwy/Braddock Pass",
+      "X":2399.84,
+      "Y":5788.28,
+      "Z":45.75
+   },
+   {
+      "Name":"Senora Fwy/Union Rd",
+      "X":2625.67,
+      "Y":5110.90,
+      "Z":44.64
+   },
+   {
+      "Name":"Seaview Rd/Grapeseed Ave",
+      "X":2444.93,
+      "Y":4598.39,
+      "Z":36.73
+   },
+   {
+      "Name":"North Calafia Way",
+      "X":169.99,
+      "Y":4418.34,
+      "Z":75.10
+   },
+   {
+      "Name":"Mount Chiliad Tunnel",
+      "X":-324.79,
+      "Y":4791.61,
+      "Z":141.04
+   },
+   {
+      "Name":"Marina Dr/Easty Joshua Rd",
+      "X":2061.40,
+      "Y":3721.39,
+      "Z":32.85
+   },
+   {
+      "Name":"Algonquin Blvd/Joshua Rd",
+      "X":1277.47,
+      "Y":3536.09,
+      "Z":35.05
+   },
+   {
+      "Name":"Joshua Rd/Calafia Rd",
+      "X":283.89,
+      "Y":3404.00,
+      "Z":37.40
+   },
+   {
+      "Name":"Route 68 Approach/Joshua Rd",
+      "X":225.84,
+      "Y":2989.70,
+      "Z":42.36
+   },
+   {
+      "Name":"Calafia Rd/Cassidy Trail",
+      "X":225.84,
+      "Y":2989.70,
+      "Z":42.36
+   },
+   {
+      "Name":"Route 68/Grand Senora Desert",
+      "X":1035.59,
+      "Y":2685.46,
+      "Z":39.15
+   },
+   {
+      "Name":"Panorama Dr/Cholla Rd",
+      "X":1829.61,
+      "Y":3276.35,
+      "Z":43.57
+   },
+   {
+      "Name":"Route 68/Panorama Dr",
+      "X":1931.85,
+      "Y":2970.57,
+      "Z":45.51
+   },
+   {
+      "Name":"Bolingbroke Penitentiary",
+      "X":1885.83,
+      "Y":2606.25,
+      "Z":45.46
+   },
+   {
+      "Name":"Mt Vinewood Dr/Zancudo Barranca",
+      "X":-804.01,
+      "Y":1823.50,
+      "Z":165.91
+   },
+   {
+      "Name":"Marlowe Dr/Milton Rd",
+      "X":-718.93,
+      "Y":985.76,
+      "Z":237.79
+   },
+   {
+      "Name":"Baytree Canyon Rd/Senora Rd",
+      "X":694.26,
+      "Y":2186.95,
+      "Z":60.42
+   },
+   {
+      "Name":"Mt Haan Rd/Baytree Canyon Rd",
+      "X":142.97,
+      "Y":1649.89,
+      "Z":228.77
+   },
+   {
+      "Name":"Senora Rd/La Fuente Blanca",
+      "X":1294.69,
+      "Y":1186.00,
+      "Z":106.81
+   },
+   {
+      "Name":"Senora Rd/Baytree Canyon Rd",
+      "X":852.92,
+      "Y":2236.89,
+      "Z":48.36
+   },
+   {
+      "Name":"Buen Vino Rd/Route 68",
+      "X":-2099.29,
+      "Y":2309.42,
+      "Z":37.43
+   },
+   {
+      "Name":"Buen Vino Rd/Banham Canyon Dr",
+      "X":-2661.20,
+      "Y":1502.22,
+      "Z":116.44
+   },
+   {
+      "Name":"Route 68/Zancudo Rd",
+      "X":-1677.66,
+      "Y":2435.54,
+      "Z":28.64
+   },
+   {
+      "Name":"Senora Fwy 2 (Petrol Station)",
+      "X":2680.09,
+      "Y":3178.76,
+      "Z":52.31
+   },
+   {
+      "Name":"Senora Way/Palomino Fwy",
+      "X":2397.76,
+      "Y":1210.39,
+      "Z":58.92
+   },
+   {
+      "Name":"Los Santos Fwy 2",
+      "X":1712.54,
+      "Y":1499.18,
+      "Z":84.70
+   },
+   {
+      "Name":"Senora Way (Over Senora Fwy)",
+      "X":2446.81,
+      "Y":2860.45,
+      "Z":48.82
+   },
+   {
+      "Name":"Palomino Fwy (Senora Fwy on-slip)",
+      "X":1880.95,
+      "Y":2103.13,
+      "Z":54.48
+   },
+   {
+      "Name":"Senora Fwy (Palomino Fwy on-slip)",
+      "X":1811.66,
+      "Y":2130.67,
+      "Z":54.47
+   },
+   {
+      "Name":"Senora Fwy (Los Santos Fwy on-slip)",
+      "X":1769.02,
+      "Y":2052.50,
+      "Z":67.20
+   },
+   {
+      "Name":"Los Santos Fwy (Senora Fwy on-slip)",
+      "X":1790.68,
+      "Y":1883.54,
+      "Z":79.10
+   },
+   {
+      "Name":"Los Santos Fwy (Palomino Fwy on-slip)",
+      "X":1786.31,
+      "Y":1601.29,
+      "Z":83.73
+   },
+   {
+      "Name":"Vinewood Park Dr/Los Santos Fwy",
+      "X":1139.41,
+      "Y":378.27,
+      "Z":91.35
+   },
+   {
+      "Name":"Palomino Fwy (Jct Senora Way)",
+      "X":2447.68,
+      "Y":953.36,
+      "Z":87.08
+   },
+   {
+      "Name":"Palomino Fwy Petrol Station",
+      "X":2585.63,
+      "Y":360.60,
+      "Z":108.24
+   },
+   {
+      "Name":"Sustancia Rd/Palomino Fwy",
+      "X":2413.86,
+      "Y":-461.85,
+      "Z":71.50
+   },
+   {
+      "Name":"Olympic Fwy (Over Popular St)",
+      "X":770.69,
+      "Y":-1195.34,
+      "Z":44.95
+   },
+   {
+      "Name":"Elysian Fields Fwy/El Rancho Blvd",
+      "X":1240.24,
+      "Y":-2051.41,
+      "Z":44.14
+   },
+   {
+      "Name":"Los Santos Fwy (Under Bridge St)",
+      "X":688.11,
+      "Y":-166.98,
+      "Z":48.05
+   },
+   {
+      "Name":"La Puerta Fwy (Over South Arsenal St)",
+      "X":-623.16,
+      "Y":-1720.22,
+      "Z":37.06
+   },
+   {
+      "Name":"Elgin Ave/Del Perro Fwy",
+      "X":304.20,
+      "Y":-473.09,
+      "Z":43.14
+   },
+   {
+      "Name":"La Puerta Fwy/Del Perro Fwy on-slip",
+      "X":-163.66,
+      "Y":-540.73,
+      "Z":28.02
+   },
+   {
+      "Name":"Del Perro Fwy (Under Movie Star Way)",
+      "X":-952.76,
+      "Y":-556.62,
+      "Z":18.33
+   }
+]
