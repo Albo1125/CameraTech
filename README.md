@@ -1,7 +1,7 @@
 # CameraTech
 CameraTech is a resource for FiveM by Albo1125 that provides for an indepth Automatic Number Plate Recognition (ANPR/ALPR) system simulation.
 
-[![CameraTechVideo](https://i.imgur.com/KXHgPBk.jpg](https://youtu.be/LLJ7NG_gUE4 "CameraTech Video")
+![CameraTechVideo](https://i.imgur.com/KXHgPBk.jpg](https://youtu.be/LLJ7NG_gUE4 "CameraTech Video")
 
 ## Installation & Usage
 1. Download the latest release.
