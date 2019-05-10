@@ -11,7 +11,7 @@ start CameraTech
 4. Add (police) vehicle models that are equipped with ANPR to `anprvehicles.txt`, each new model should be on a new line.
 5. Optionally, enable the ANPR whitelist in `vars.lua` and add identifiers. This only affects commands for use of police.
 6. Optionally, add or remove fixed ANPR cameras on the map in `fixedanprcameras.json`, following the format of the provided file.
-7. Optionally, in `sv_CameraTech.lua`, uncomment lines 10 to 12. This will make the script insert a new row into a MySQL database whenever a fixed ANPR hit comes in (e.g. for web-based control purposes).
+7. Optionally, in `sv_CameraTech.lua`, uncomment lines 10 to 12 and in `_resource.lua` uncomment line 12. This will make the script insert a new row into a MySQL database whenever a fixed ANPR hit comes in (e.g. for web-based control purposes).
 
 ## Commands
 * /anpr - Toggles the ANPR interface if you are in a specified vehicle with equipped ANPR (Whitelisted).
@@ -21,6 +21,7 @@ start CameraTech
 * /focusanpr PLATE - Only displays fixed ANPR alerts for the specified PLATE and automatically draws a route if any hit comes in. Leave PLATE blank to unfocus.
 * /setplateinfo PLATE;INFO - Adds ANPR markers (INFO) for the specified plate. Leave INFO blank to remove markers. Example: /setplateinfo AB12CDE;STOLEN
 * /setvehinfo INFO - Adds ANPR markers (INFO) for the plate of the vehicle you're currently in. Leave INFO blank to remove markers. Example: /setvehinfo STOLEN
+* /anprinterface - Toggles the ANPR interface.
 
 ## Improvements & Licensing
 Please view the license. Improvements and new feature additions are very welcome, please feel free to create a pull request. Proper credit is always required if you release modified versions of my work and you should always link back to this original source.
