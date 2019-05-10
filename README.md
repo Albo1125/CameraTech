@@ -1,6 +1,8 @@
 # CameraTech
 CameraTech is a resource for FiveM by Albo1125 that provides for an indepth Automatic Number Plate Recognition (ANPR/ALPR) system simulation.
 
+[![CameraTechVideo](https://i.imgur.com/KXHgPBk.jpg](https://youtu.be/LLJ7NG_gUE4 "CameraTech Video")
+
 ## Installation & Usage
 1. Download the latest release.
 2. Unzip the CameraTech folder into your resources folder on your FiveM server.
@@ -23,15 +25,15 @@ start CameraTech
 * /setvehinfo INFO - Adds ANPR markers (INFO) for the plate of the vehicle you're currently in. Leave INFO blank to remove markers. Example: /setvehinfo STOLEN
 * /anprinterface - Toggles the ANPR interface.
 
-## Improvements & Licensing
-Please view the license. Improvements and new feature additions are very welcome, please feel free to create a pull request. Proper credit is always required if you release modified versions of my work and you should always link back to this original source.
+## Improvements & Licencing
+Please view the license. Improvements and new feature additions are very welcome, please feel free to create a pull request. As a guideline, please do not release separate versions with minor modifications, but contribute to this repository directly. However, if you really do wish to release modified versions of my work, permission & proper credit is always required and you should always link back to this original source and respect the licence.
 
 ## Libraries used (many thanks to their authors)
 * [CitizenFX.Core.Client](https://github.com/citizenfx/fivem)
 * [Newtonsoft.Json](https://www.newtonsoft.com/json)
 
 ## Video
-[Click here](https://youtu.be/8veCv0OEkUQ)
+[Click here](https://youtu.be/LLJ7NG_gUE4)
 
 ## Screenshots
 ![CameraTech](https://i.imgur.com/KlhjVos.jpg)
