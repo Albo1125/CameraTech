@@ -1,12 +1,18 @@
 local plateinfos = {}
 local mysqlready = false
 
+-- Uncomment this if using MySQL async to insert ANPR hits into the database.
+--MySQL.ready(function() 
+--	mysqlready = true
+--end)
+
 RegisterServerEvent("CameraTech:FixedANPRAlert")
 AddEventHandler('CameraTech:FixedANPRAlert', function(colour, model, anprname, dir, plate)
 	local marker = plateinfos[plate]
 	if marker ~= nil then
 		TriggerClientEvent("CameraTech:ClFixedANPRAlert", -1, colour, model, anprname, dir, plate)
 		if mysqlready == true then
+			-- Uncomment this if using MySQL async to insert ANPR hits into the database.
 			--local timenow = os.time(os.date("!*t"))
 			--local logquery = MySQL.Async.execute("INSERT into anpr (colour, model, anprname, dir, plate, marker, time) VALUES (@colour, @model, @anprname, @dir, @plate, @marker, @time)", 
 			--{['@colour'] = colour, ['@model'] = model, ['@anprname'] = anprname, ['@dir'] = dir, ['@plate'] = plate, ['@marker'] = marker, ['@time'] = timenow})
@@ -115,10 +121,6 @@ AddEventHandler('CameraTech:UpdateVehicleInfo', function(plate, info)
 		end
 		TriggerClientEvent("CameraTech:SyncPlateInfo", -1, plateinfos)
 	end
-end)
-
-MySQL.ready(function() 
-	mysqlready = true
 end)
 
 print("CameraTech by Albo1125 (FiveM)")
