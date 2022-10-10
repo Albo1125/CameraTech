@@ -18,9 +18,10 @@ namespace CameraTech
         public float FixedANPRRadius = 28f;
         public static bool FixedANPRAlertsToggle = false;
         public static bool BlipsCreated = false;
-        public static string FocussedPlate = null;
+        public static string FocusedPlate = null;
         public static Blip RouteBlip = null;
         private static int ANPRHitChance = 95;
+        private static string lastFixedPlate = null;
 
         public CameraTech()
         {
@@ -58,10 +59,10 @@ namespace CameraTech
                 if (FixedANPRAlertsToggle && Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists() &&
                     ANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
                 {
-                    if (FocussedPlate != null && FocussedPlate == plate)
+                    if (FocusedPlate != null && FocusedPlate == plate)
                     {
                         TriggerEvent("chatMessage", "Fixed ANPR", new int[] { 0, 191, 255 }, colour + " " + modelName + ". " + plate + ". " + anprname + " (" + dir + "). ^*Markers: ^r" + PlateInfo[plate]);
-                        PlayANPRAlertSound();
+                        PlayANPRAlertSound(false);
                         if (BlipsCreated) {
                             FixedANPR fixedanpr = FixedANPRCameras.Where(x => x.Name == anprname).FirstOrDefault();
                             if (fixedanpr != null && fixedanpr.blip.Exists())
@@ -73,17 +74,20 @@ namespace CameraTech
                         ANPRInterface.FixedANPRHeaderString = anprname + " (" + dir + ")";
                         ANPRInterface.FixedANPRInfo = colour + " " + modelName + ". " + plate + ".";
                         ANPRInterface.FixedANPRMarkers = "~r~" + PlateInfo[plate];
+                        lastFixedPlate = plate;
                         ANPRInterface.FlashFixedANPR();
                     }
-                    else if (FocussedPlate == null)
+                    else if (FocusedPlate == null)
                     {
                         TriggerEvent("chatMessage", "Fixed ANPR", new int[] { 0, 191, 255 }, colour + " " + modelName + ". " + plate + ". " + anprname + " (" + dir + "). ^*Markers: ^r" + PlateInfo[plate]);
-                        PlayANPRAlertSound();
+                        PlayANPRAlertSound(false);
                         ANPRInterface.FixedANPRHeaderString = anprname + " (" + dir + ")";
                         ANPRInterface.FixedANPRInfo = colour + " " + modelName + ". " + plate + ".";
                         ANPRInterface.FixedANPRMarkers = "~r~" + PlateInfo[plate];
+                        lastFixedPlate = plate;
                         ANPRInterface.FlashFixedANPR();
                     }
+                    
                 }
             });
 
@@ -127,8 +131,23 @@ namespace CameraTech
                 if (FixedANPRAlertsToggle && Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists() &&
                     ANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
                 {
-                    FocussedPlate = plate;
-                    if (FocussedPlate == null)
+                    if (plate == null)
+                    {
+                        if (FocusedPlate == null)
+                        {
+                            FocusedPlate = lastFixedPlate;
+                        }
+                        else
+                        {
+                            FocusedPlate = null;
+                        }
+                    }
+                    else
+                    {
+                        FocusedPlate = plate;
+                    }
+
+                    if (FocusedPlate == null)
                     {
                         TriggerEvent("chatMessage", "Fixed ANPR", new int[] { 0, 191, 255 }, "Removed fixed ANPR plate focus.");
                         if (RouteBlip != null && RouteBlip.Exists())
@@ -139,10 +158,12 @@ namespace CameraTech
                     }
                     else
                     {
-                        TriggerEvent("chatMessage", "Fixed ANPR", new int[] { 0, 191, 255 }, "Fixed ANPR plate focus: " + plate);
+                        TriggerEvent("chatMessage", "Fixed ANPR", new int[] { 0, 191, 255 }, "Fixed ANPR plate focus: " + FocusedPlate);
                     }
                 }
             });
+
+            
 
             string resourceName = API.GetCurrentResourceName();
             string anprvehs = API.LoadResourceFile(resourceName, "anprvehicles.txt");
@@ -238,9 +259,16 @@ namespace CameraTech
             }
         }
 
-        public static void PlayANPRAlertSound()
+        public static void PlayANPRAlertSound(bool inVehicle)
         {
-            API.PlaySound(-1, "TIMER_STOP", "HUD_MINI_GAME_SOUNDSET", false, 0, false);
+            if (inVehicle)
+            {
+                PlayInteractSound("ANPR", 0.7f);
+            }
+            else
+            {
+                API.PlaySound(-1, "TIMER_STOP", "HUD_MINI_GAME_SOUNDSET", false, 0, false);
+            }
         }
 
         public static void CreateFixedANPRBlips()
@@ -272,6 +300,11 @@ namespace CameraTech
                 anpr.blip = null;
             }
             BlipsCreated = false;
+        }
+
+        public static void PlayInteractSound(string soundname, float volume)
+        {
+            TriggerEvent("InteractSound_CL:PlayOnOne", soundname, volume);
         }
     }
 }

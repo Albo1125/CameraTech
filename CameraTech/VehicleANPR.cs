@@ -18,12 +18,19 @@ namespace CameraTech
         private float raycastRadius = 6.2f;
         private Vehicle ANPRvehicle;
 
-        private List<String> checkedPlates = new List<string>();
+        private List<string> checkedPlates = new List<string>();
         
 
         public VehicleANPR()
         {
-            
+            EventHandlers["fivemskillsreset"] += new Action<dynamic>((dynamic) =>
+            {
+                Active = false;
+                CameraTech.FixedANPRAlertsToggle = false;
+                CameraTech.RemoveANPRBlips();
+                ANPRvehicle = null;
+            });
+
             EventHandlers["CameraTech:ToggleVehicleANPR"] += new Action<dynamic>((dynamic) =>
             {
                 if (Active)
@@ -146,7 +153,7 @@ namespace CameraTech
                         float distance = Vector3.Distance(stest.from, hitVeh.Position);
                         string colour = VehicleColour.GetVehicleColour(stest.hitEntity).PrimarySimpleColourName;
                         TriggerEvent("chatMessage", cameraname, new int[] { 255, 128, 0 }, colour + " " + modelName + ". " + plate + ". Dist: " + (int)Math.Round(distance) + ". ^*Markers: ^r" + CameraTech.PlateInfo[plate]);
-                        CameraTech.PlayANPRAlertSound();
+                        CameraTech.PlayANPRAlertSound(true);
                         ANPRInterface.VehicleANPRHeaderString = cameraname;
                         ANPRInterface.VehicleANPRInfo = colour + " " + modelName + ". " + plate + ".";
                         ANPRInterface.VehicleANPRMarkers = "~r~" + CameraTech.PlateInfo[plate];

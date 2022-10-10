@@ -11,6 +11,7 @@ AddEventHandler('CameraTech:FixedANPRAlert', function(colour, model, anprname, d
 	local marker = plateinfos[plate]
 	if marker ~= nil then
 		TriggerClientEvent("CameraTech:ClFixedANPRAlert", -1, colour, model, anprname, dir, plate)
+		TriggerEvent("CameraTech:svFixedANPRHit", plate, colour .. " " .. model, anprname .. " (" .. dir .. ")", marker)
 		if mysqlready == true then
 			-- Uncomment this if using MySQL async to insert ANPR hits into the database.
 			--local timenow = os.time(os.date("!*t"))
@@ -44,6 +45,7 @@ function readplatefunc(source, args, rawCommand)
 	TriggerClientEvent("CameraTech:ReadPlateInFront", source)
 end
 
+RegisterCommand('rp', readplatefunc, false)
 RegisterCommand('readplate', readplatefunc, false)
 
 function checkplatefunc(source, args, rawCommand)

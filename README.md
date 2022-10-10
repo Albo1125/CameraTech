@@ -6,14 +6,14 @@ CameraTech is a resource for FiveM by Albo1125 that provides for an indepth Auto
 ## Installation & Usage
 1. Download the latest release.
 2. Unzip the CameraTech folder into your resources folder on your FiveM server.
-3. Add the following to your server.cfg file:
+3. Create a new file called `anprvehicles.txt` in the CameraTech folder. Add (police) vehicle models that are equipped with ANPR to that file, each new model should be on a new line. An example `anprvehicles.default.txt` is provided.
+4. Add the following to your server.cfg file:
 ```text
 start CameraTech
 ```
-4. Add (police) vehicle models that are equipped with ANPR to `anprvehicles.txt`, each new model should be on a new line.
 5. Optionally, enable the ANPR whitelist in `vars.lua` and add identifiers. This only affects commands for use of police.
 6. Optionally, add or remove fixed ANPR cameras on the map in `fixedanprcameras.json`, following the format of the provided file.
-7. Optionally, in `sv_CameraTech.lua`, uncomment lines 5 to 7 and 16 to 18 and in `_resource.lua` uncomment line 12. This will make the script insert a new row into a MySQL database whenever a fixed ANPR hit comes in (e.g. for web-based control purposes).
+7. Optionally, in `sv_CameraTech.lua`, uncomment lines 5 to 7 and 16 to 18 and in `fxmanifest.lua` uncomment line 14. This will make the script insert a new row into a MySQL database whenever a fixed ANPR hit comes in (e.g. for web-based control purposes).
 
 ## Commands
 * /anpr - Toggles the ANPR interface if you are in a specified vehicle with equipped ANPR (Whitelisted).
