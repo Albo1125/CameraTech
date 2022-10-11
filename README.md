@@ -33,7 +33,7 @@ You can add as many entries to the root array as you like. If a vehicle model ap
 * /vehicleanpr (alias /vehanpr) - Toggles ANPR alerts from vehicle ANPR cameras (Whitelisted).
 * /readplate (alias /rp) - Reads the plate of the vehicle in front of you and puts it in chat.
 * /checkplate PLATE - Returns the ANPR markers currently active for the specified plate.
-* /focusanpr PLATE - Only displays fixed ANPR alerts for the specified PLATE and automatically draws a route if any hit comes in. Leave PLATE blank to unfocus.
+* /focusanpr PLATE - Only displays fixed ANPR alerts for the specified PLATE and automatically draws a route if any hit comes in. Leave PLATE blank to unfocus or to focus the plate that last triggered a fixed ANPR alert.
 * /setplateinfo PLATE;INFO - Adds ANPR markers (INFO) for the specified plate. Leave INFO blank to remove markers. Example: /setplateinfo AB12CDE;STOLEN
 * /setvehinfo INFO - Adds ANPR markers (INFO) for the plate of the vehicle you're currently in. Leave INFO blank to remove markers. Example: /setvehinfo STOLEN
 
