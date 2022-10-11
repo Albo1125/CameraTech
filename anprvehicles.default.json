@@ -1,0 +1,14 @@
+[
+   {
+      "ModelName":"POLICE",
+      "ANPRAccessType":"fixed only"
+   },
+   {
+      "ModelName":"POLICE2",
+      "ANPRAccessType":"vehicle only"
+   },
+   {
+      "ModelName":"POLICE3",
+      "ANPRAccessType":"full"
+   },
+]

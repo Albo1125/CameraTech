@@ -16,45 +16,43 @@ namespace CameraTech
         private float frontRange = 75;
         private float backRange = -75;
         private float raycastRadius = 6.2f;
-        private Vehicle ANPRvehicle;
 
-        private List<string> checkedPlates = new List<string>();
-        
+        public static List<string> checkedPlates = new List<string>();
 
         public VehicleANPR()
         {
             EventHandlers["fivemskillsreset"] += new Action<dynamic>((dynamic) =>
             {
-                Active = false;
-                CameraTech.FixedANPRAlertsToggle = false;
-                CameraTech.RemoveANPRBlips();
-                ANPRvehicle = null;
+                ANPRInterface.toggleMasterInterface(false);
+                toggleVehicleANPR(false);
+                CameraTech.toggleFixedANPR(false);
             });
 
             EventHandlers["CameraTech:ToggleVehicleANPR"] += new Action<dynamic>((dynamic) =>
             {
                 if (Active)
                 {
-                    Active = false;
-                    CameraTech.FixedANPRAlertsToggle = false;
-                    CameraTech.RemoveANPRBlips();
-                    ANPRvehicle = null;
-                    Screen.ShowNotification("Vehicle ANPR " + (Active ? "activated." : "deactivated."));
+                    toggleVehicleANPR(false);
+                    Screen.ShowNotification("Vehicle ANPR deactivated.");
                 }
                 else if (Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists())
                 {
-                    if (CameraTech.ANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
+                    if (CameraTech.VehicleANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
                     {
-                        Active = true;
-                        Screen.ShowNotification("Vehicle ANPR " + (Active ? "activated." : "deactivated.") + " Fixed ANPR alerts activated.");
-                        checkedPlates.Clear();
-                        ANPRvehicle = Game.Player.Character.CurrentVehicle;
-                        CameraTech.FixedANPRAlertsToggle = true;
-                        CameraTech.CreateFixedANPRBlips();
+                        toggleVehicleANPR(true);
+                        Screen.ShowNotification("Vehicle ANPR activated.");
+                        if (!ANPRInterface.MasterInterfaceToggle)
+                        {
+                            ANPRInterface.toggleMasterInterface(true);
+                        }
+                        if (!CameraTech.FixedANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
+                        {
+                            CameraTech.toggleFixedANPR(false);
+                        }
                     }
                     else
                     {
-                        Screen.ShowNotification("This vehicle does not have ANPR technology.");
+                        Screen.ShowNotification("This vehicle does not have Vehicle ANPR technology.");
                     }
                 }
             });
@@ -72,6 +70,20 @@ namespace CameraTech
             RunChecks();
         }
 
+        public static void toggleVehicleANPR(bool toggle)
+        {
+            if (!toggle)
+            {
+                Active = false;
+                checkedPlates.Clear();
+            } 
+            else
+            {
+                Active = true;
+                checkedPlates.Clear();
+            }
+        }
+
         public async void RunChecks()
         {
             
@@ -81,13 +93,8 @@ namespace CameraTech
                 if (Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists())
                 {
                     Vehicle playerVeh = Game.Player.Character.CurrentVehicle;
-                    if (!Active && ANPRvehicle != null && playerVeh == ANPRvehicle)
-                    {
-                        Active = true;
-                        Screen.ShowNotification("Vehicle ANPR " + (Active ? "activated." : "deactivated."));
-                    }
 
-                    if (Active)
+                    if (ANPRInterface.MasterInterfaceToggle && Active && playerVeh == ANPRInterface.ANPRvehicle)
                     {
                         
                         Vector3 frontCoord = playerVeh.GetOffsetPosition(new Vector3(0, raycastRadius - 0.5f, 0));
@@ -107,12 +114,6 @@ namespace CameraTech
                         CheckANPRShapeTest("Rear ANPR (R)", ShapeTest.StartShapeTest(backCoord, backCoordB, raycastRadius, playerVeh), playerVeh, false);
                     }
                 }
-                else if (Active)
-                {
-                    Active = false;
-                    Screen.ShowNotification("Vehicle ANPR " + (Active ? "activated." : "deactivated."));
-                }
-
             }
         }
 

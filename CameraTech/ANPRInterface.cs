@@ -20,18 +20,69 @@ namespace CameraTech
         public static string FixedANPRInfo = "~g~ACTIVATED";
         public static string VehicleANPRMarkers = "";
         public static string FixedANPRMarkers = "";
-
-        private static bool MasterInterfaceToggle = true;
         private const float scale = 0.345f;
+
+        public static bool MasterInterfaceToggle = false;
+        public static Vehicle ANPRvehicle;
 
         public ANPRInterface()
         {
             EventHandlers["CameraTech:MasterInterfaceToggle"] += new Action<dynamic>((dynamic) =>
             {
-                MasterInterfaceToggle = !MasterInterfaceToggle;
-                Screen.ShowNotification("ANPR Interface " + (MasterInterfaceToggle ? "activated." : "deactivated."));
+                
+                if (MasterInterfaceToggle)
+                {
+                    toggleMasterInterface(false);
+                    CameraTech.toggleFixedANPR(false);
+                    VehicleANPR.toggleVehicleANPR(false);
+                    Screen.ShowNotification("ANPR deactivated.");
+                }
+                else
+                {
+                    if (!CameraTech.usingJsonFile && CameraTech.currentANPRModelsJsonString == null)
+                    {
+                        TriggerServerEvent("CameraTech:GetANPRModelsJsonString");
+                    }
+                    else
+                    {
+                        runAnprCommandEnable();
+                    }
+                }
             });
             drawingAsync();
+        }
+
+        public static void runAnprCommandEnable()
+        {
+            if (Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists()) 
+            { 
+                bool isVehicleANPRModel = CameraTech.VehicleANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model);
+                bool isFixedANPRModel = CameraTech.FixedANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model);
+                if (isVehicleANPRModel || isFixedANPRModel)
+                {
+                    toggleMasterInterface(true);
+                    VehicleANPR.toggleVehicleANPR(isVehicleANPRModel);
+                    CameraTech.toggleFixedANPR(isFixedANPRModel);
+                    Screen.ShowNotification("ANPR activated.");
+                }
+                else
+                {
+                    Screen.ShowNotification("This vehicle does not have ANPR technology.");
+                }
+            }
+        }
+        public static void toggleMasterInterface(bool toggle)
+        {
+            if (toggle)
+            {
+                MasterInterfaceToggle = true;
+                ANPRvehicle = Game.Player.Character.CurrentVehicle;
+            }
+            else
+            {
+                MasterInterfaceToggle = false;
+                ANPRvehicle = null;
+            }
         }
 
         private async Task drawingAsync()
@@ -40,9 +91,8 @@ namespace CameraTech
             {
                 await Delay(0);
 
-                if (MasterInterfaceToggle && (CameraTech.FixedANPRAlertsToggle || VehicleANPR.Active))
+                if (MasterInterfaceToggle && ANPRvehicle != null)
                 {
-                    //API.DrawRect(0.508f, 0.94f, 0.196f, 0.116f, 0, 0, 0, 150);
                     Rectangle rect = new Rectangle(new PointF(Screen.Width * 0.001f, Screen.Height * 0.5f), new SizeF(Screen.Width * 0.16f, Screen.Height * 0.140f), Color.FromArgb(150, 0, 0, 0));
                     Text vehicleANPRHeader = new Text("Vehicle ANPR - " + VehicleANPRHeaderString, new PointF(Screen.Width * 0.08f, Screen.Height * 0.501f), scale, Color.FromArgb(255, 0, 191, 255), Font.ChaletComprimeCologne, Alignment.Center);
                     Text vehicleANPRInfoText = new Text(VehicleANPRInfo, new PointF(Screen.Width * 0.08f, Screen.Height * 0.519f), scale, Color.FromArgb(255, 255, 255, 255), Font.ChaletComprimeCologne, Alignment.Center);
@@ -69,8 +119,7 @@ namespace CameraTech
                         fixedANPRLocationText.Caption = "";
                     }
 
-                    if (Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists() &&
-                            CameraTech.ANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
+                    if (Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists())
                     {
                         rect.Draw();                       
                         vehicleANPRHeader.Draw();

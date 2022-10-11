@@ -12,7 +12,8 @@ namespace CameraTech
 {
     public class CameraTech : BaseScript
     {
-        public static Model[] ANPRModels;
+        public static HashSet<Model> VehicleANPRModels = new HashSet<Model>();
+        public static HashSet<Model> FixedANPRModels = new HashSet<Model>();
         public static Dictionary<string, string> PlateInfo = new Dictionary<string, string>();
         public static FixedANPR[] FixedANPRCameras;
         public float FixedANPRRadius = 28f;
@@ -22,10 +23,16 @@ namespace CameraTech
         public static Blip RouteBlip = null;
         private static int ANPRHitChance = 95;
         private static string lastFixedPlate = null;
+        public static bool usingJsonFile = false;
+        public static string currentANPRModelsJsonString = null;
 
         public CameraTech()
         {
             Debug.Write("CameraTech by Albo1125.");
+
+            TriggerEvent("chat:addSuggestion", "/anpr", "Toggles the ANPR interface");
+            TriggerEvent("chat:addSuggestion", "/vehanpr", "Toggles the vehicle ANPR system");
+            TriggerEvent("chat:addSuggestion", "/fixedanpr", "Toggles the fixed ANPR system");
 
             TriggerEvent("chat:addSuggestion", "/setplateinfo", "Sets markers for the specified plate", new[]
             {
@@ -56,8 +63,7 @@ namespace CameraTech
 
             EventHandlers["CameraTech:ClFixedANPRAlert"] += new Action<string, string, string, string, string>((string colour, string modelName, string anprname, string dir, string plate) =>
             {
-                if (FixedANPRAlertsToggle && Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists() &&
-                    ANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
+                if (ANPRInterface.MasterInterfaceToggle && FixedANPRAlertsToggle && Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists())
                 {
                     if (FocusedPlate != null && FocusedPlate == plate)
                     {
@@ -95,21 +101,28 @@ namespace CameraTech
             {
                 if (FixedANPRAlertsToggle)
                 {
-                    FixedANPRAlertsToggle = false;
-                    Screen.ShowNotification("Fixed ANPR alerts " + (FixedANPRAlertsToggle ? "activated." : "deactivated."));
-                    RemoveANPRBlips();
+                    toggleFixedANPR(false);
+                    Screen.ShowNotification("Fixed ANPR alerts deactivated.");
                 }
                 else if (Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists())
                 {
-                    if (ANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
+                    if (FixedANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
                     {
-                        FixedANPRAlertsToggle = true;
-                        Screen.ShowNotification("Fixed ANPR alerts " + (FixedANPRAlertsToggle ? "activated." : "deactivated."));
-                        CreateFixedANPRBlips();
+                        toggleFixedANPR(true);
+                        Screen.ShowNotification("Fixed ANPR alerts activated.");
+
+                        if (!ANPRInterface.MasterInterfaceToggle)
+                        {
+                            ANPRInterface.toggleMasterInterface(true);
+                        }
+                        if (!VehicleANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
+                        {
+                            VehicleANPR.toggleVehicleANPR(false);
+                        }
                     }
                     else
                     {
-                        Screen.ShowNotification("This vehicle does not have ANPR technology.");
+                        Screen.ShowNotification("This vehicle does not have Fixed ANPR technology.");
                     }
                 }
             });
@@ -128,8 +141,7 @@ namespace CameraTech
 
             EventHandlers["CameraTech:FocusANPR"] += new Action<string>((string plate) =>
             {
-                if (FixedANPRAlertsToggle && Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists() &&
-                    ANPRModels.Contains(Game.Player.Character.CurrentVehicle.Model))
+                if (FixedANPRAlertsToggle && Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists())
                 {
                     if (plate == null)
                     {
@@ -163,16 +175,83 @@ namespace CameraTech
                 }
             });
 
-            
+            EventHandlers["CameraTech:ANPRModelsJsonString"] += new Action<string, bool>((string jsonString, bool runAnprCommandEnable) =>
+            {
+                if (!usingJsonFile)
+                {
+                    if (currentANPRModelsJsonString != jsonString)
+                    {
+                        populateANPRModels(jsonString);
+                        currentANPRModelsJsonString = jsonString;
+                        if (VehicleANPR.Active && ANPRInterface.ANPRvehicle != null && !VehicleANPRModels.Contains(ANPRInterface.ANPRvehicle.Model))
+                        {
+                            VehicleANPR.toggleVehicleANPR(false);
+                        }
+
+                        if (FixedANPRAlertsToggle && ANPRInterface.ANPRvehicle != null && !FixedANPRModels.Contains(ANPRInterface.ANPRvehicle.Model))
+                        {
+                            toggleFixedANPR(false);
+                        }
+                    }
+                }
+
+                if (runAnprCommandEnable)
+                {
+                    ANPRInterface.runAnprCommandEnable();
+                }
+            });
 
             string resourceName = API.GetCurrentResourceName();
-            string anprvehs = API.LoadResourceFile(resourceName, "anprvehicles.txt");
-            ANPRModels = anprvehs.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).Select(x => new Model(x)).ToArray();
+            string anprvehs = API.LoadResourceFile(resourceName, "anprvehicles.json");
+
+            if (!string.IsNullOrWhiteSpace(anprvehs))
+            {
+                usingJsonFile = false;
+                Debug.WriteLine("Loading ANPR vehicles from anprvehicles.json file");
+                populateANPRModels(anprvehs);
+            }
 
             string fixedanprjson = API.LoadResourceFile(resourceName, "fixedanprcameras.json");
             FixedANPRCameras = JsonConvert.DeserializeObject<FixedANPR[]>(fixedanprjson);
 
             Main();
+        }
+
+        public static void populateANPRModels(string jsonString)
+        {
+            ANPRModel[] AllModels = JsonConvert.DeserializeObject<ANPRModel[]>(jsonString, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
+            
+            FixedANPRModels.Clear();
+            VehicleANPRModels.Clear();
+
+            foreach (ANPRModel m in AllModels)
+            {
+                if (m.CanAccessFixedANPR)
+                {
+                    FixedANPRModels.Add(new Model(m.ModelName));
+                }
+
+                if (m.CanAccessVehicleANPR)
+                {
+                    VehicleANPRModels.Add(new Model(m.ModelName));
+                }
+            }
+        }
+
+        public static void toggleFixedANPR(bool toggle)
+        {
+            if (!toggle)
+            {
+                FixedANPRAlertsToggle = false;
+                RemoveANPRBlips();
+            } else if (toggle)
+            {
+                FixedANPRAlertsToggle = true;
+                CreateFixedANPRBlips();
+            }
         }
 
         public static string DegreesToCardinal(double degrees)
@@ -194,15 +273,27 @@ namespace CameraTech
                 await Delay(5);
                 if (Game.Player != null && Game.Player.Character != null && Game.Player.Character.Exists() && Game.Player.Character.IsInVehicle() && Game.Player.Character.CurrentVehicle.Exists())
                 {
-                    Vehicle playerVeh = Game.Player.Character.CurrentVehicle;                   
-                    if (BlipsCreated && !ANPRModels.Contains(playerVeh.Model))
+                    Vehicle playerVeh = Game.Player.Character.CurrentVehicle;
+
+                    if (!ANPRInterface.MasterInterfaceToggle && ANPRInterface.ANPRvehicle != null && playerVeh == ANPRInterface.ANPRvehicle)
+                    {
+                        ANPRInterface.toggleMasterInterface(true);
+                        Screen.ShowNotification("ANPR Activated");
+                    }
+                    else if (ANPRInterface.MasterInterfaceToggle && playerVeh != ANPRInterface.ANPRvehicle)
+                    {
+                        ANPRInterface.MasterInterfaceToggle = false; //Set property directly because preserve vehicle.
+                    }
+
+                    if (BlipsCreated && (!FixedANPRAlertsToggle || !ANPRInterface.MasterInterfaceToggle))
                     {
                         RemoveANPRBlips();
                     }
-                    else if (FixedANPRAlertsToggle && !BlipsCreated && ANPRModels.Contains(playerVeh.Model))
+                    else if (FixedANPRAlertsToggle && ANPRInterface.MasterInterfaceToggle && !BlipsCreated)
                     {
                         CreateFixedANPRBlips();
                     }
+                    
 
                     if (RouteBlip != null && RouteBlip.Exists() && Vector3.Distance(playerVeh.Position, RouteBlip.Position) < 140)
                     {
@@ -252,10 +343,19 @@ namespace CameraTech
                         }
                     }
                 }
-                else if (BlipsCreated)
+                else
                 {
-                    RemoveANPRBlips();
+                    if (BlipsCreated)
+                    {
+                        RemoveANPRBlips();
+                    }
+                    
+                    if (ANPRInterface.MasterInterfaceToggle)
+                    {
+                        ANPRInterface.MasterInterfaceToggle = false; //Set property directly because preserve vehicle.
+                    }
                 }
+                
             }
         }
 
@@ -263,11 +363,12 @@ namespace CameraTech
         {
             if (inVehicle)
             {
-                PlayInteractSound("ANPR", 0.7f);
+                PlayInteractSound("VehicleANPR", 0.7f);
             }
             else
             {
-                API.PlaySound(-1, "TIMER_STOP", "HUD_MINI_GAME_SOUNDSET", false, 0, false);
+                PlayInteractSound("FixedANPR", 0.7f);
+                //API.PlaySound(-1, "TIMER_STOP", "HUD_MINI_GAME_SOUNDSET", false, 0, false);
             }
         }
 

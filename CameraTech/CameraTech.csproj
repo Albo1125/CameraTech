@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ANPRInterface.cs" />
+    <Compile Include="ANPRModel.cs" />
     <Compile Include="CameraTech.cs" />
     <Compile Include="FixedANPR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

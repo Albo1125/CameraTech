@@ -21,15 +21,16 @@ AddEventHandler('CameraTech:FixedANPRAlert', function(colour, model, anprname, d
 	end
 end)
 
-function anprfunc(source, args, rawCommand)
+
+function anprinterfacefunc(source, args, rawCommand)
 	if isAuthorized(source) then
-		TriggerClientEvent("CameraTech:ToggleVehicleANPR", source)
+		TriggerClientEvent("CameraTech:MasterInterfaceToggle", source)
 	else
 		print(GetPlayerName(source).. " you are not ANPR trained.")
 	end
 end
 
-RegisterCommand('anpr', anprfunc, false)
+RegisterCommand('anpr', anprinterfacefunc, false)
 
 function fixedanprfunc(source, args, rawCommand)
 	if isAuthorized(source) then
@@ -40,6 +41,17 @@ function fixedanprfunc(source, args, rawCommand)
 end
 
 RegisterCommand('fixedanpr', fixedanprfunc, false)
+
+function vehicleanprfunc(source, args, rawCommand)
+	if isAuthorized(source) then
+		TriggerClientEvent("CameraTech:ToggleVehicleANPR", source)
+	else
+		print(GetPlayerName(source).. " you are not ANPR trained.")
+	end
+end
+
+RegisterCommand('vehicleanpr', vehicleanprfunc, false)
+RegisterCommand('vehanpr', vehicleanprfunc, false)
 
 function readplatefunc(source, args, rawCommand)
 	TriggerClientEvent("CameraTech:ReadPlateInFront", source)
@@ -73,12 +85,6 @@ end
 
 RegisterCommand('focusanpr', focusanprfunc, false)
 RegisterCommand('focusplate', focusanprfunc, false)
-
-function anprinterfacefunc(source, args, rawCommand)
-	TriggerClientEvent("CameraTech:MasterInterfaceToggle", source)
-end
-
-RegisterCommand('anprinterface', anprinterfacefunc, false)
 
 function setplateinfofunc(source, args, rawCommand)	
 	local plateinfo = stringsplit(table.concat(args, " "), ";")

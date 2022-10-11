@@ -8,7 +8,7 @@ version 'v1.5.0'
 url 'https://github.com/Albo1125/CameraTech'
 files {
 	'Newtonsoft.Json.dll',
-	'anprvehicles.txt',
+	'anprvehicles.json',
 	'fixedanprcameras.json'
 }
 --server_script '@mysql-async/lib/MySQL.lua'
