@@ -6,14 +6,14 @@ CameraTech is a resource for FiveM by Albo1125 that provides for an indepth Auto
 ## Installation & Usage
 1. Download the latest [Release](https://github.com/Albo1125/CameraTech/releases).
 2. Unzip the CameraTech folder into your resources folder on your FiveM server.
-3. Add the following to your server.cfg file:
+3. Create a file called `fixedanprcameras.json` in the CameraTech folder. You can usually simply rename the `fixedanprcameras.default.json` to do so. Optionally, add or remove fixed ANPR cameras on the map, following the format of the provided default file.
+4. Add the following to your server.cfg file:
 ```text
 start CameraTech
 ```
-4. Install the [InteractSound](https://github.com/plunkettscott/interact-sound) resource. Add sound files of your choice to InteractSound called `FixedANPR.ogg` and `VehicleANPR.ogg`. Examples have been included in this release.
-5. Optionally, create a new file called `anprvehicles.json` in the CameraTech folder. See `Customising your ANPR vehicles` below for further guidance.
-6. Optionally, enable the ANPR whitelist in `vars.lua` and add identifiers. This only affects commands for use of police.
-7. Optionally, add or remove fixed ANPR cameras on the map in `fixedanprcameras.json`, following the format of the provided file.
+5. Install the [InteractSound](https://github.com/plunkettscott/interact-sound) resource. Add sound files of your choice to InteractSound called `FixedANPR.ogg` and `VehicleANPR.ogg`. Examples have been included in this release.
+6. Optionally, create a new file called `anprvehicles.json` in the CameraTech folder. See `Customising your ANPR vehicles` below for further guidance.
+7. Optionally, enable the ANPR whitelist in `vars.lua` and add identifiers. This only affects commands for use of police.
 8. Optionally, in `sv_CameraTech.lua`, uncomment lines 5 to 7 and 16 to 18 and in `fxmanifest.lua` uncomment line 14. This will make the script insert a new row into a MySQL database whenever a fixed ANPR hit comes in (e.g. for web-based control purposes).
 
 ## Customising your vehicles
