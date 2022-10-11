@@ -15,7 +15,7 @@ namespace CameraTech
         public static HashSet<Model> VehicleANPRModels = new HashSet<Model>();
         public static HashSet<Model> FixedANPRModels = new HashSet<Model>();
         public static Dictionary<string, string> PlateInfo = new Dictionary<string, string>();
-        public static FixedANPR[] FixedANPRCameras;
+        public static FixedANPR[] FixedANPRCameras = new FixedANPR[] { };
         public float FixedANPRRadius = 28f;
         public static bool FixedANPRAlertsToggle = false;
         public static bool BlipsCreated = false;
@@ -28,7 +28,7 @@ namespace CameraTech
 
         public CameraTech()
         {
-            Debug.Write("CameraTech by Albo1125.");
+            Debug.WriteLine("CameraTech by Albo1125.");
 
             TriggerEvent("chat:addSuggestion", "/anpr", "Toggles the ANPR interface");
             TriggerEvent("chat:addSuggestion", "/vehanpr", "Toggles the vehicle ANPR system");
@@ -212,7 +212,14 @@ namespace CameraTech
             }
 
             string fixedanprjson = API.LoadResourceFile(resourceName, "fixedanprcameras.json");
-            FixedANPRCameras = JsonConvert.DeserializeObject<FixedANPR[]>(fixedanprjson);
+            if (string.IsNullOrWhiteSpace(fixedanprjson))
+            {
+                Debug.WriteLine("Could not load fixedanprcameras.json");
+            }
+            else
+            {
+                FixedANPRCameras = JsonConvert.DeserializeObject<FixedANPR[]>(fixedanprjson);
+            }
 
             Main();
         }
