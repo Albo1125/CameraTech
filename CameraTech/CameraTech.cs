@@ -206,7 +206,7 @@ namespace CameraTech
 
             if (!string.IsNullOrWhiteSpace(anprvehs))
             {
-                usingJsonFile = false;
+                usingJsonFile = true;
                 Debug.WriteLine("Loading ANPR vehicles from anprvehicles.json file");
                 populateANPRModels(anprvehs);
             }
