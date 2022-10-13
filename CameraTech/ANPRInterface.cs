@@ -103,12 +103,19 @@ namespace CameraTech
                         vehicleANPRMarkersText.Caption = "";
                     }
 
-                    string focusedString = "Fixed";
-                    if (CameraTech.FocusedPlate != null)
+                    string focusedString = "Fixed ANPR";
+                    if (CameraTech.FocusedPlate != null || CameraTech.ForceFocusedAnpr)
                     {
-                        focusedString = "Focused";
+                        focusedString = "Focused ANPR";
+                        if (CameraTech.FocusedPlate != null)
+                        {
+                            focusedString += " (" + CameraTech.FocusedPlate + ")";
+                        } else
+                        {
+                            focusedString += " (No Plate)";
+                        }
                     }
-                    Text fixedANPRHeader = new Text(focusedString + " ANPR", new PointF(Screen.Width * 0.08f, Screen.Height * 0.555f), scale, Color.FromArgb(255, 0, 191, 255), Font.ChaletComprimeCologne, Alignment.Center);
+                    Text fixedANPRHeader = new Text(focusedString, new PointF(Screen.Width * 0.08f, Screen.Height * 0.555f), scale, Color.FromArgb(255, 0, 191, 255), Font.ChaletComprimeCologne, Alignment.Center);
                     Text fixedANPRLocationText = new Text(FixedANPRHeaderString, new PointF(Screen.Width * 0.08f, Screen.Height * 0.573f), scale, Color.FromArgb(255, 0, 191, 255), Font.ChaletComprimeCologne, Alignment.Center);
                     Text fixedANPRInfoText = new Text(FixedANPRInfo, new PointF(Screen.Width * 0.08f, Screen.Height * 0.591f), scale, Color.FromArgb(255, 255, 255, 255), Font.ChaletComprimeCologne, Alignment.Center);
                     Text fixedANPRMarkersText = new Text(FixedANPRMarkers, new PointF(Screen.Width * 0.08f, Screen.Height * 0.609f), scale, Color.FromArgb(255, 255, 255, 255), Font.ChaletComprimeCologne, Alignment.Center);

@@ -25,6 +25,7 @@ namespace CameraTech
         private static string lastFixedPlate = null;
         public static bool usingJsonFile = false;
         public static string currentANPRModelsJsonString = null;
+        public static bool ForceFocusedAnpr = false; // If true, Fixed ANPR only works if a plate is focused (useful if you want control to circulate ANPR hits initially).
 
         public CameraTech()
         {
@@ -83,7 +84,7 @@ namespace CameraTech
                         lastFixedPlate = plate;
                         ANPRInterface.FlashFixedANPR();
                     }
-                    else if (FocusedPlate == null)
+                    else if (FocusedPlate == null && !ForceFocusedAnpr)
                     {
                         TriggerEvent("chatMessage", "Fixed ANPR", new int[] { 0, 191, 255 }, colour + " " + modelName + ". " + plate + ". " + anprname + " (" + dir + "). ^*Markers: ^r" + PlateInfo[plate]);
                         PlayANPRAlertSound(false);
@@ -220,6 +221,8 @@ namespace CameraTech
             {
                 FixedANPRCameras = JsonConvert.DeserializeObject<FixedANPR[]>(fixedanprjson);
             }
+
+            ForceFocusedAnpr = API.GetResourceMetadata(resourceName, "ForceFocusedAnpr", 0) == "true";
 
             Main();
         }
