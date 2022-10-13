@@ -15,6 +15,7 @@ start CameraTech
 6. Optionally, create a new file called `anprvehicles.json` in the CameraTech folder. See `Customising your ANPR vehicles` below for further guidance.
 7. Optionally, enable the ANPR whitelist in `vars.lua` and add identifiers. This only affects commands for use of police.
 8. Optionally, in `sv_CameraTech.lua`, uncomment lines 5 to 7 and 16 to 18 and in `fxmanifest.lua` uncomment line 14. This will make the script insert a new row into a MySQL database whenever a fixed ANPR hit comes in (e.g. for web-based control purposes).
+9. Optionally, in `fxmanifest.lua`, change the `ForceFocusedAnpr` setting to `true`. This means users will not be able to receive fixed ANPR alerts unless they have a plate focused. This is useful if you want your control room to initially circulate ANPR hits to units before the units see the hits themselves.
 
 ## Customising your vehicles
 You have two options for customising your ANPR vehicles.
