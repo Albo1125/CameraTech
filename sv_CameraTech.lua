@@ -7,11 +7,11 @@ local mysqlready = false
 --end)
 
 RegisterServerEvent("CameraTech:FixedANPRAlert")
-AddEventHandler('CameraTech:FixedANPRAlert', function(colour, model, anprname, dir, plate)
+AddEventHandler('CameraTech:FixedANPRAlert', function(colour, model, anprname, dir, plate, x, y, z)
 	local marker = plateinfos[plate]
 	if marker ~= nil then
 		TriggerClientEvent("CameraTech:ClFixedANPRAlert", -1, colour, model, anprname, dir, plate)
-		TriggerEvent("CameraTech:svFixedANPRHit", plate, colour .. " " .. model, anprname .. " (" .. dir .. ")", marker)
+		TriggerEvent("CameraTech:svFixedANPRHit", source, plate, colour .. " " .. model, anprname .. " (" .. dir .. ")", marker, x, y, z)
 		if mysqlready == true then
 			-- Uncomment this if using MySQL async to insert ANPR hits into the database.
 			--local timenow = os.time(os.date("!*t"))
@@ -93,6 +93,7 @@ function setplateinfofunc(source, args, rawCommand)
 	if plateinfo[2] ~= nil then
 		plateinfos[plateinfo[1]] = plateinfo[2]
 		TriggerClientEvent("chatMessage", source, "SYSTEM", {0, 0, 0 }, "Plate: " .. plateinfo[1] .. ". Info: " .. plateinfo[2])
+		TriggerEvent("CameraTech:PlateMarkerUpdate", source, plateinfo[1], plateinfo[2])
 		TriggerClientEvent("CameraTech:SyncPlateInfo", -1, plateinfos)
 	elseif plateinfo[1] ~= nil then
 		plateinfos = removeKey(plateinfos, plateinfo[1])
@@ -100,6 +101,7 @@ function setplateinfofunc(source, args, rawCommand)
 			plateinfos = {}
 		end
 		TriggerClientEvent("chatMessage", source, "SYSTEM", {0, 0, 0 }, "Plate: " .. plateinfo[1] .. ". No info.")
+		TriggerEvent("CameraTech:PlateMarkerUpdate", source, plateinfo[1], nil)
 		TriggerClientEvent("CameraTech:SyncPlateInfo", -1, plateinfos)
 	end
 end
@@ -121,14 +123,32 @@ RegisterServerEvent("CameraTech:UpdateVehicleInfo")
 AddEventHandler('CameraTech:UpdateVehicleInfo', function(plate, info)
 	if info ~= nil then
 		plateinfos[plate] = info
+		TriggerEvent("CameraTech:PlateMarkerUpdate", source, plate, info)
 		TriggerClientEvent("CameraTech:SyncPlateInfo", -1, plateinfos)
 	else
 		plateinfos = removeKey(plateinfos, plate)
 		if plateinfos == nil then
 			plateinfos = {}
 		end
+		TriggerEvent("CameraTech:PlateMarkerUpdate", source, plate, nil)
 		TriggerClientEvent("CameraTech:SyncPlateInfo", -1, plateinfos)
 	end
+end)
+
+RegisterServerEvent("CameraTech:UpdateAllPlateInfo")
+AddEventHandler('CameraTech:UpdateAllPlateInfo', function(plateinfo)
+	local newplateinfos = {}
+	for _, v in ipairs(plateinfo) do
+		if (v == nil or v.plate == nil or v.marker == nil) then
+			print("CameraTech:UpdateAllPlateInfo error: no plate or marker specified")
+		else
+			local plate = string.upper(string.gsub(v.plate, "%s+", ""))
+			newplateinfos[plate] = v.marker
+		end
+	end
+	
+	plateinfos = newplateinfos
+	TriggerClientEvent("CameraTech:SyncPlateInfo", -1, plateinfos)
 end)
 
 print("CameraTech by Albo1125 (FiveM)")

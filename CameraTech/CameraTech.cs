@@ -329,12 +329,12 @@ namespace CameraTech
                                     if ((anpr != LastBlockedFixedANPR || (DateTime.Now - timeLastTriggeredANPRCamera).Seconds > 120) && API.GetRandomIntInRange(0, 100) < ANPRHitChance)
                                     {
                                         //alert hit
-                                        await Delay(1800);
+                                        await Delay(1300);
                                         dir = DegreesToCardinal(playerVeh.Heading);
                                         string modelName = API.GetDisplayNameFromVehicleModel((uint)API.GetEntityModel(playerVeh.Handle));
                                         
                                         string colour = VehicleColour.GetVehicleColour(playerVeh.Handle).PrimarySimpleColourName;
-                                        TriggerServerEvent("CameraTech:FixedANPRAlert", colour, modelName, anpr.Name, dir, plate);
+                                        TriggerServerEvent("CameraTech:FixedANPRAlert", colour, modelName, anpr.Name, dir, plate, anpr.X, anpr.Y, anpr.Z);
                                         lastTriggeredANPRCamera = anpr;
                                         timeLastTriggeredANPRCamera = DateTime.Now;
                                         lastTriggeredDir = dir;
