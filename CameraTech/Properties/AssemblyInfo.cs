@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Albo1125")]
 [assembly: AssemblyProduct("CameraTech")]
-[assembly: AssemblyCopyright("Copyright ©  2022  - Albo1125")]
+[assembly: AssemblyCopyright("Copyright ©  2024  - Albo1125")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
