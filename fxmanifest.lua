@@ -4,7 +4,7 @@ games { 'gta5' }
 name 'CameraTech'
 description 'ANPR Camera Technology System'
 author 'Albo1125 (https://www.youtube.com/albo1125)'
-version 'v1.5.1'
+version 'v1.6.0'
 url 'https://github.com/Albo1125/CameraTech'
 files {
 	'Newtonsoft.Json.dll',
