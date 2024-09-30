@@ -23,31 +23,37 @@ end)
 
 
 function anprinterfacefunc(source, args, rawCommand)
-	if isAuthorized(source) then
-		TriggerClientEvent("CameraTech:MasterInterfaceToggle", source)
-	else
-		print(GetPlayerName(source).. " you are not ANPR trained.")
-	end
+	isAuthorized(source, function(auth)
+		if auth then
+			TriggerClientEvent("CameraTech:MasterInterfaceToggle", source)
+		else
+			print(GetPlayerName(source).. " you are not ANPR trained.")
+		end
+	end)
 end
 
 RegisterCommand('anpr', anprinterfacefunc, false)
 
 function fixedanprfunc(source, args, rawCommand)
-	if isAuthorized(source) then
-		TriggerClientEvent("CameraTech:FixedANPRToggle", source)
-	else
-		print(GetPlayerName(source).. " you are not ANPR trained.")
-	end
+	isAuthorized(source, function(auth)
+		if auth then
+			TriggerClientEvent("CameraTech:FixedANPRToggle", source)
+		else
+			print(GetPlayerName(source).. " you are not ANPR trained.")
+		end
+	end)
 end
 
 RegisterCommand('fixedanpr', fixedanprfunc, false)
 
 function vehicleanprfunc(source, args, rawCommand)
-	if isAuthorized(source) then
-		TriggerClientEvent("CameraTech:ToggleVehicleANPR", source)
-	else
-		print(GetPlayerName(source).. " you are not ANPR trained.")
-	end
+	isAuthorized(source, function(auth)
+		if auth then
+			TriggerClientEvent("CameraTech:ToggleVehicleANPR", source)
+		else
+			print(GetPlayerName(source).. " you are not ANPR trained.")
+		end
+	end)
 end
 
 RegisterCommand('vehicleanpr', vehicleanprfunc, false)

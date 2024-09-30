@@ -5,14 +5,14 @@ local authorizedIdentifiers = {
 	
 }
 
-function isAuthorized(player)
-	if not useWhitelist then return true end
+function isAuthorized(player, callback)
+	if not useWhitelist then return callback(true) end
     for i,id in ipairs(authorizedIdentifiers) do
         for x,pid in ipairs(GetPlayerIdentifiers(player)) do
             if pid == id then
-                return true
+                return callback(true)
             end
         end
     end
-    return false
+    return callback(false)
 end
