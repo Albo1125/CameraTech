@@ -154,6 +154,7 @@ namespace CameraTech
                         float distance = Vector3.Distance(stest.from, hitVeh.Position);
                         string colour = VehicleColour.GetVehicleColour(stest.hitEntity).PrimarySimpleColourName;
                         TriggerEvent("chatMessage", cameraname, new int[] { 255, 128, 0 }, colour + " " + modelName + ". " + plate + ". Dist: " + (int)Math.Round(distance) + ". ^*Markers: ^r" + CameraTech.PlateInfo[plate]);
+                        TriggerServerEvent("CameraTech:VehicleANPRAlert", colour, modelName, cameraname, (int)Math.Round(distance), plate, originVeh.Position.X, originVeh.Position.Y, originVeh.Position.Z);
                         CameraTech.PlayANPRAlertSound(true);
                         ANPRInterface.VehicleANPRHeaderString = cameraname;
                         ANPRInterface.VehicleANPRInfo = colour + " " + modelName + ". " + plate + ".";

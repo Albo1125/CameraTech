@@ -21,6 +21,19 @@ AddEventHandler('CameraTech:FixedANPRAlert', function(colour, model, anprname, d
 	end
 end)
 
+RegisterServerEvent("CameraTech:VehicleANPRAlert")
+AddEventHandler('CameraTech:VehicleANPRAlert', function(colour, model, cameraname, distance, plate, x, y, z)
+	local marker = plateinfos[plate]
+	if marker ~= nil then
+		TriggerEvent("CameraTech:svVehicleANPRHit", source, plate, colour, model, cameraname .. " (" .. distance .. "m)", marker, x, y, z)
+		if mysqlready == true then
+			-- Uncomment this if using MySQL async to insert ANPR hits into the database.
+			--local timenow = os.time(os.date("!*t"))
+			--local logquery = MySQL.Async.execute("INSERT into anpr...")
+		end
+	end
+end)
+
 
 function anprinterfacefunc(source, args, rawCommand)
 	isAuthorized(source, function(auth)
